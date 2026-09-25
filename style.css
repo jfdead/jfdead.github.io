@@ -1,0 +1,214 @@
+/* ==========================================
+IMPORTACIÓN DE FUENTES GOOGLE FONTS
+========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bytesized&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ==========================================
+RESET & VARIABLES
+========================================== */
+
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--bg-dark: #060810;
+--card-bg: rgba(13, 16, 29, 0.85);
+--card-border: rgba(0, 240, 255, 0.3);
+
+--neon-cyan: #00f0ff;
+--neon-pink: #ff007f;
+--neon-purple: #7000ff;
+
+--text-main: #ffffff;
+--text-muted: #94a3b8;
+
+--font-bytesized: 'Bytesized', sans-serif;
+--font-ui: 'Rajdhani', sans-serif;
+
+
+}
+
+body {
+background-color: var(--bg-dark);
+color: var(--text-main);
+font-family: var(--font-ui);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px 15px;
+position: relative;
+overflow-x: hidden;
+}
+
+/* ==========================================
+FONDO GAMER (Cuadrícula & Efectos Neón)
+========================================== */
+body::before {
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-image:
+linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+background-size: 40px 40px;
+z-index: -2;
+animation: gridAnimation 20s linear infinite;
+}
+
+@keyframes gridAnimation {
+0% { background-position: 0 0; }
+100% { background-position: 40px 40px; }
+}
+
+body::after {
+content: '';
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 550px;
+height: 550px;
+background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(112, 0, 255, 0.1) 40%, transparent 70%);
+z-index: -1;
+pointer-events: none;
+}
+
+/* ==========================================
+CONTENEDOR PRINCIPAL ESTILO LINKTREE
+========================================== */
+.main-content {
+width: 100%;
+max-width: 460px;
+background: var(--card-bg);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid var(--card-border);
+border-radius: 28px;
+padding: 45px 25px;
+box-shadow: 0 0 40px rgba(0, 0, 0, 0.9),
+0 0 20px rgba(0, 240, 255, 0.15),
+inset 0 0 15px rgba(0, 240, 255, 0.05);
+text-align: center;
+position: relative;
+}
+
+.main-content::before {
+content: '';
+position: absolute;
+top: 0;
+left: 15%;
+right: 15%;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), transparent);
+}
+
+/* ==========================================
+ENCABEZADO & TIPOGRAFÍA BYTESIZED
+========================================== */
+.title {
+margin-bottom: 35px;
+}
+
+.title h1 {
+font-family: var(--font-bytesized);
+font-size: 3.5rem;
+color: var(--neon-cyan);
+text-shadow: 0 0 12px rgba(0, 240, 255, 0.8),
+0 0 24px rgba(0, 240, 255, 0.4);
+letter-spacing: 2px;
+line-height: 1.1;
+margin-bottom: 8px;
+}
+
+.title p {
+font-size: 1.05rem;
+font-weight: 700;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+
+/* ==========================================
+INTERACCIÓN DE BOTONES LINKTREE
+========================================== */
+.nav ul {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+
+.itemlist a {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 18px 24px;
+background: rgba(22, 27, 46, 0.85);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 16px;
+color: var(--text-main);
+text-decoration: none;
+font-size: 1.15rem;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+position: relative;
+overflow: hidden;
+transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Efecto de barrido de luz al pasar el cursor */
+.itemlist a::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.35), transparent);
+transition: left 0.5s ease;
+}
+
+.itemlist a:hover::before {
+left: 100%;
+}
+
+/* Línea de resplandor neón inferior */
+.itemlist a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0%;
+height: 2px;
+background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+transition: width 0.35s ease;
+}
+
+/* Interacción Hover Gamer */
+.itemlist a:hover {
+background: rgba(18, 26, 48, 0.95);
+border-color: var(--neon-cyan);
+transform: translateY(-4px) scale(1.02);
+box-shadow: 0 10px 25px rgba(0, 240, 255, 0.25),
+inset 0 0 12px rgba(0, 240, 255, 0.15);
+color: var(--neon-cyan);
+}
+
+.itemlist a:hover::after {
+width: 100%;
+}
+
+/* Interacción de Clic (Active) */
+.itemlist a:active {
+transform: translateY(-1px) scale(0.99);
+box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+}
